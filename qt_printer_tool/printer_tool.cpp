@@ -35,6 +35,9 @@ PrinterTool::PrinterTool()
     textEdit = new QTextEdit;
     setCentralWidget(textEdit);
 
+    //setWindowIcon(QIcon("C:/Users/tli/work/github/qt_practices/qt_printer_tool/printer.png"));
+    // This method could only set left top icon.
+    //setWindowIcon(QIcon(":/icons/printer.png"));
     setWindowTitle(tr("Printer Tool"));
     resize(800,800);
     //setIcon("");
