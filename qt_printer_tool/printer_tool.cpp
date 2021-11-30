@@ -11,6 +11,7 @@
 #include <QPrintPreviewDialog>
 #include <QPageSetupDialog>
 #include <QIcon>
+#include <QPainter>
 
 PrinterTool::PrinterTool()
 {
@@ -81,6 +82,7 @@ void PrinterTool::clear()
 
 void PrinterTool::print()
 {
+    QString text = "hello, this is a test page\n";
     QPrinter printer;
 
     QPrintDialog dialog(&printer, this);
@@ -88,10 +90,25 @@ void PrinterTool::print()
 //    if (editor->textCursor().hasSelection())
 //        dialog.addEnabledOption(QAbstractPrintDialog::PrintSelection);
     if (dialog.exec() != QDialog::Accepted) {
+        textEdit->append("Print cancel...");
         return;
     }
+
     //textEdit->setText("Print ...");
     textEdit->append("Print ...");
+
+    // Printer text
+//    QPainter painter;
+//    painter.begin(&printer);
+//    painter.drawText(100, 100, 500, 500, Qt::AlignLeft|Qt::AlignTop, text);
+//    painter.end();
+
+    QPainter painter(&printer);
+    for (auto& fileName : files) {
+        QImage img(fileName);
+        painter.drawImage(QPoint(0,0),img);
+    }
+    painter.end();
 }
 
 // 打印预览
