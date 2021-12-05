@@ -72,7 +72,7 @@ void Dialog::createGridGroupBox()
                                  "grid layout."));
     layout->addWidget(smallEditor, 0, 2, 4, 1);
     layout->setColumnStretch(1, 10);
-    layout->setColumnStretch(2, 20);
+    layout->setColumnStretch(2, 30);
     gridGroupBox->setLayout(layout);
 }
 
